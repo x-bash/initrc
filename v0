@@ -1,0 +1,18 @@
+
+initrc_setup(){
+    if [ "$BASH_VERSION" ]; then        CAN="$HOME/.bashrc"
+       [ "$(uname)" = "Darwin" ]  &&    CAN="$CAN $HOME/.bash_profile"
+    elif [ "$ZSH_VERSION" ]; then       CAN="$HOME/.zshrc"
+    elif [ "$KSH_VERSION" ]; then       CAN="$HOME/.kshrc"
+    else                                CAN="$HOME/.shinit"
+    fi
+}
+
+
+initrc(){
+    local subcmd="${1:?Provide}"
+    case "$subcmd" in
+        setup)     initrc_setup ;;
+    esac
+}
+
